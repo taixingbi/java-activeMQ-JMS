@@ -23,4 +23,5 @@ password: admin
 ### reference
 ```
 https://activemq.apache.org/hello-world
+https://www.logicbig.com/tutorials/java-ee-tutorial/jms/jms-helloworld.html
 ```
