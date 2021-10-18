@@ -1,7 +1,15 @@
 
+## amazon mg 
+### broker
+```
+https://us-east-2.console.aws.amazon.com/amazon-mq/home?region=us-east-2#/brokers/details?id=b-11e561ed-aac0-41e8-ab8e-ef325e641487
+```
+### console login
+```
+https://b-11e561ed-aac0-41e8-ab8e-ef325e641487-1.mq.us-east-2.amazonaws.com:8162/admin/browse.jsp?JMSDestination=MyQueue
+```
 
-## local activemq server 
-
+## local activemq server
 ### broker 
 ```
 tcp://127.0.0.1:61616"
@@ -13,7 +21,7 @@ brew install apache-activemq
 brew services start activemq
 ```
 
-### login
+### console login
 ```
 http://127.0.0.1:8161/admin/
 user: admin
