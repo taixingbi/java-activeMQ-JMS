@@ -1,17 +1,17 @@
-package hello.demo;
+package hello.local;
 
 import javax.jms.*;
 
 
-public class MessageSender {
-    private final String queueName= "example.queue";
+public class MessageSenderLocal {
+    private final String queueName= "MyQueue";
 
     private final MessageProducer producer;
     private final Session session;
     private final Connection con;
 
-    public MessageSender () throws JMSException {
-        ConnectionFactory factory = JmsProvider.getConnectionFactory();
+    public MessageSenderLocal() throws JMSException {
+        ConnectionFactory factory = JmsProviderLocal.getConnectionFactory();
         this.con = factory.createConnection();
         con.start();
 

@@ -24,4 +24,5 @@ password: admin
 ```
 https://activemq.apache.org/hello-world
 https://www.logicbig.com/tutorials/java-ee-tutorial/jms/jms-helloworld.html
+https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-working-java-example.html
 ```

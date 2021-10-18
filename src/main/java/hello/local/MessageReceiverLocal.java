@@ -1,13 +1,15 @@
-package hello.demo;
+package hello.local;
+import hello.aws.JmsProviderAws;
+
 import javax.jms.*;
 
-public class MessageReceiver implements MessageListener {
-    private final String queueName= "example.queue";
+public class MessageReceiverLocal implements MessageListener {
+    private final String queueName= "MyQueue";
 
     private Connection con;
 
     public void startListener () throws JMSException {
-        ConnectionFactory factory = JmsProvider.getConnectionFactory();
+        ConnectionFactory factory = JmsProviderLocal.getConnectionFactory();
         this.con = factory.createConnection();
         con.start();
 

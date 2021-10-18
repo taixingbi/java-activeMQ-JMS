@@ -1,7 +1,9 @@
 package hello;
 
-import hello.demo.MessageReceiver;
-import hello.demo.MessageSender;
+import hello.aws.MessageConsumer;
+import hello.aws.MessageSender;
+import hello.local.MessageReceiverLocal;
+import hello.local.MessageSenderLocal;
 
 import javax.jms.JMSException;
 
@@ -9,14 +11,20 @@ public class App {
     public static void main(String[] args) throws InterruptedException, JMSException {
         System.out.println("----------app start----------");
         //simpleJms();
-        demoJms();
+        //JmsLocal();
+        JmsAws();
         System.out.println("----------app end----------");
     }
 
-    static void demoJms() throws JMSException, InterruptedException {
-        final MessageSender sender = new MessageSender();
+    static void JmsAws() throws JMSException {
+        MessageSender.sendMessage();
+        MessageConsumer.receiveMessage();
+    }
 
-        final MessageReceiver receiver = new MessageReceiver();
+    static void JmsLocal() throws JMSException, InterruptedException {
+        final MessageSenderLocal sender = new MessageSenderLocal();
+
+        final MessageReceiverLocal receiver = new MessageReceiverLocal();
         receiver.startListener();
 
         String xml=
