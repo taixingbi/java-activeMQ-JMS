@@ -21,6 +21,12 @@ brew install apache-activemq
 brew services start activemq
 ```
 
+### start activemq on mac
+```
+/usr/local/Cellar/activemq/5.16.3/bin
+./activemq start
+```
+
 ### console login
 ```
 http://127.0.0.1:8161/admin/
