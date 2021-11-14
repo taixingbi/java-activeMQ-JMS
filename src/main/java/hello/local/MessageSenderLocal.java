@@ -8,14 +8,14 @@ public class MessageSenderLocal {
 
     private final MessageProducer producer;
     private final Session session;
-    private final Connection con;
+    private final Connection connection;
 
     public MessageSenderLocal() throws JMSException {
         ConnectionFactory factory = JmsProviderLocal.getConnectionFactory();
-        this.con = factory.createConnection();
-        con.start();
+        this.connection = factory.createConnection();
+        connection.start();
 
-        this.session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        this.session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Queue queue = session.createQueue(queueName);
         this.producer = session.createProducer(queue);
     }
@@ -29,6 +29,6 @@ public class MessageSenderLocal {
     }
 
     public void destroy () throws JMSException {
-        con.close();
+        connection.close();
     }
 }

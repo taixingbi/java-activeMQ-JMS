@@ -1,53 +1,24 @@
 package hello;
 
-import hello.aws.MessageConsumer;
-import hello.aws.MessageSender;
-import hello.local.MessageReceiverLocal;
-import hello.local.MessageSenderLocal;
+import hello.aws.AwsProcess;
+import hello.local.LocalProcess;
+import hello.simple.SimpleProcess;
 
 import javax.jms.JMSException;
 
 public class App {
     public static void main(String[] args) throws InterruptedException, JMSException {
         System.out.println("----------app start----------");
-        //simpleJms();
-        //JmsLocal();
-        JmsAws();
+        AwsProcess.JmsAws();
+//        LocalProcess.JmsLocal();
+//        SimpleProcess.jmsSimple();
         System.out.println("----------app end----------");
     }
 
-    static void JmsAws() throws JMSException {
-        MessageSender.sendMessage();
-        MessageConsumer.receiveMessage();
-    }
 
-    static void JmsLocal() throws JMSException, InterruptedException {
-        final MessageSenderLocal sender = new MessageSenderLocal();
 
-        final MessageReceiverLocal receiver = new MessageReceiverLocal();
-        receiver.startListener();
 
-        String xml=
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                "<text>" +
-                    "<para>hello jms</para>"+
-                "</text>";
 
-        for (int i = 0; i < 1; i++) {
-            sender.sendMessage( xml );
-            Thread.sleep(300);
-        }
 
-        sender.destroy();
-        receiver.destroy();
-    }
-
-    static void simpleJms() throws InterruptedException {
-        JmsProducer jmsProducer = new JmsProducer();
-        JmsConsumer jmsConsumer = new JmsConsumer();
-        jmsProducer.MessageSender();
-        Thread.sleep(1000);
-        jmsConsumer.MessageReceiver();
-    }
 
 }

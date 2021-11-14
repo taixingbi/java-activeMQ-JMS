@@ -5,24 +5,24 @@ import org.apache.activemq.jms.pool.PooledConnectionFactory;
 
 import javax.jms.*;
 
-public class MessageConsumer {
+public class MessageConsumerAws {
     final static ActiveMQConnectionFactory connectionFactory =
             JmsProviderAws.createActiveMQConnectionFactory();
 
     public static void receiveMessage() throws JMSException {
-        final Connection consumerConnection = connectionFactory.createConnection();
-        consumerConnection.start();
+        final Connection connection = connectionFactory.createConnection();
+        connection.start();
 
         // Create a session.
-        final Session consumerSession = consumerConnection
+        final Session session = connection
                 .createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         // Create a queue named "MyQueue".
-        final Destination consumerDestination = consumerSession
+        final Destination consumerDestination = session
                 .createQueue("MyQueue");
 
         // Create a message consumer from the session to the queue.
-        final javax.jms.MessageConsumer consumer = consumerSession
+        final javax.jms.MessageConsumer consumer = session
                 .createConsumer(consumerDestination);
 
         // Begin to wait for messages.
@@ -34,7 +34,7 @@ public class MessageConsumer {
 
         // Clean up the consumer.
         consumer.close();
-        consumerSession.close();
-        consumerConnection.close();
+        session.close();
+        connection.close();
     }
 }

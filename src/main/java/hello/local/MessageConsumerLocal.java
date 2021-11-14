@@ -3,17 +3,17 @@ import hello.aws.JmsProviderAws;
 
 import javax.jms.*;
 
-public class MessageReceiverLocal implements MessageListener {
+public class MessageConsumerLocal implements MessageListener {
     private final String queueName= "MyQueue";
 
-    private Connection con;
+    private Connection connection;
 
     public void startListener () throws JMSException {
         ConnectionFactory factory = JmsProviderLocal.getConnectionFactory();
-        this.con = factory.createConnection();
-        con.start();
+        this.connection = factory.createConnection();
+        connection.start();
 
-        Session session = con.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         Queue queue = session.createQueue(queueName);
         MessageConsumer consumer = session.createConsumer(queue);
@@ -36,6 +36,6 @@ public class MessageReceiverLocal implements MessageListener {
     }
 
     public void destroy () throws JMSException {
-        con.close();
+        connection.close();
     }
 }

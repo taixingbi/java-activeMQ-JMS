@@ -4,7 +4,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.jms.pool.PooledConnectionFactory;
 import javax.jms.*;
 
-public class MessageSender {
+public class MessageSenderAws {
     final static ActiveMQConnectionFactory connectionFactory =
             JmsProviderAws.createActiveMQConnectionFactory();
 
@@ -18,34 +18,27 @@ public class MessageSender {
     }
 
     public static void
-    sendMessage() throws JMSException {
-        final Connection producerConnection = createPooledConnectionFactory(connectionFactory)
+    sendMessage(String xml) throws JMSException {
+        final Connection connection = createPooledConnectionFactory(connectionFactory)
                 .createConnection();
 
-        producerConnection.start();
-
+        connection.start();
         // Create a session.
-        final Session producerSession = producerConnection
+        final Session session = connection
                 .createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         // Create a queue named "MyQueue".
-        final Destination producerDestination = producerSession
+        final Destination producerDestination = session
                 .createQueue("MyQueue");
 
         // Create a producer from the session to the queue.
-        final MessageProducer producer = producerSession
+        final MessageProducer producer = session
                 .createProducer(producerDestination);
+
+
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
-        // Create a message.
-//        final String text = "Hello amazon MQ!!!";
-        String xml=
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                        "<text>" +
-                        "<para>hello jms</para>"+
-                        "</text>";
-
-        final TextMessage producerMessage = producerSession
+        final TextMessage producerMessage = session
                 .createTextMessage(xml);
 
         // Send the message.
@@ -54,7 +47,7 @@ public class MessageSender {
 
         // Clean up the producer.
         producer.close();
-        producerSession.close();
-        producerConnection.close();
+        session.close();
+        connection.close();
     }
 }

@@ -1,9 +1,9 @@
-package hello;
+package hello.simple;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-public class JmsProducer {
+public class JmsProducerSimple {
     String brokerURL = "tcp://127.0.0.1:61616";
     String USER_NAME= "admin";
     String PASSWORD= "admin";
@@ -22,9 +22,7 @@ public class JmsProducer {
 
             MessageProducer producer = session.createProducer(destination);
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-
             String text = "Hello world! From: " + Thread.currentThread().getName() + " : " + this.hashCode();
-
             TextMessage message = session.createTextMessage(text);
 
             // Tell the producer to send the message
@@ -39,8 +37,5 @@ public class JmsProducer {
             System.out.println("Caught: " + e);
             e.printStackTrace();
         }
-
     }
-
-
 }

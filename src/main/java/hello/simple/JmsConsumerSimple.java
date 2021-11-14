@@ -1,9 +1,9 @@
-package hello;
+package hello.simple;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-public class JmsConsumer {
+public class JmsConsumerSimple {
     String brokerURL = "tcp://127.0.0.1:61616";
     String USER_NAME= "admin";
     String PASSWORD= "admin";
