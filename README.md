@@ -25,7 +25,12 @@ brew services start activemq
 ```
 /usr/local/Cellar/activemq/5.16.3/bin
 ./activemq start
+INFO: Loading '/usr/local/Cellar/activemq/5.16.3/libexec//bin/env'
+INFO: Using java '/usr/local/opt/openjdk/bin/java'
+INFO: Starting - inspect logfiles specified in logging.properties and log4j.properties to get details
+INFO: pidfile created : '/usr/local/Cellar/activemq/5.16.3/libexec//data/activemq.pid' (pid '71185')
 ```
+
 
 ### console login
 ```
