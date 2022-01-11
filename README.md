@@ -23,7 +23,9 @@ brew services start activemq
 
 ### start activemq on mac
 ```
-/usr/local/Cellar/activemq/5.16.3/bin
+cd /usr/local/Cellar/activemq/5.16.3/bin
+or
+cd /opt/homebrew/opt/activemq/bin
 ./activemq start
 INFO: Loading '/usr/local/Cellar/activemq/5.16.3/libexec//bin/env'
 INFO: Using java '/usr/local/opt/openjdk/bin/java'
